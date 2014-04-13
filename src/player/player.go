@@ -2,11 +2,11 @@ package player
 
 const VERSION = "Default Go folding player"
 
-func BetRequest(gameState *GameState) int {
+func BetRequest(state *GameState) int {
     return 0
 }
 
-func Showdown(gameState *GameState) {
+func Showdown(state *GameState) {
     
 }
 

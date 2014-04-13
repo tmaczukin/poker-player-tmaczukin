@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
 	"encoding/json"
+	"fmt"
 	"log"
+	"net/http"
 	"player"
 )
 
@@ -14,11 +14,11 @@ func main() {
 	http.HandleFunc("/", handleRequest)
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil); err != nil {
 		log.Fatal(err)
-	} 
+	}
 }
 
 func handleRequest(w http.ResponseWriter, request *http.Request) {
-	if err:= request.ParseForm(); err != nil  {
+	if err := request.ParseForm(); err != nil {
 		log.Printf("Error parsing form data: %s", err)
 		http.Error(w, "Internal Server Error", 500)
 		return
