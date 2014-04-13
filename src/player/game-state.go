@@ -2,7 +2,8 @@ package player
 
 type GameState struct {
 
-    // The small blind in the current round. The big blind is twice the small blind
+    // The small blind in the current round. The big blind is twice 
+    // the small blind
     SmallBlind int `json:"small_blind"`
 
     // The amount of the largest current bet from any one player
@@ -19,13 +20,15 @@ type GameState struct {
     // The first player is (dealer+1)%(players.length)
     Dealer int `json:dealer`
 
-    // Number of orbits completed. (The number of times the dealer button returned to the same player.)
+    // Number of orbits completed. (The number of times the dealer button 
+    // returned to the same player.)
     Orbits int `json:orbits`
 
     // The index of your player, in the players array
     InAction int `json:in_action`
 
-    // An array of the players. The order stays the same during the entire tournament
+    // An array of the players. The order stays the same during the 
+    // entire tournament
     Players []Player `json:players`
 
     // Finally the array of community cards.
@@ -50,15 +53,15 @@ type Player struct {
     // Version identifier returned by the player
     Version string `json:"version"`
 
-    // Amount of chips still available for the player. (Not including
-    //     the chips the player bet in this round.)
-
+    // Amount of chips still available for the player. 
+    // (Not including the chips the player bet in this round)
     Stack int `json:"stack"`
 
     // The amount of chips the player put into the pot
     Bet int `json:"bet"`
 
-    // The cards of the player. This is only visible for your own player except after showdown, when cards revealed are also included.
+    // The cards of the player. This is only visible for your own player 
+    // except after showdown, when cards revealed are also included.
     HoleCards []Card `json:"hole_cards"`
 }
 
