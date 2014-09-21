@@ -26,6 +26,9 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 	action := request.FormValue("action")
 	log.Printf("Request method=%s url=%s action=%s from client=%s\n", request.Method, request.URL, action, request.RemoteAddr)
 	switch action {
+	case "check":
+		fmt.Fprint(w, "")
+		return
 	case "bet_request":
 		gameState := parseGameState(request.FormValue("game_state"))
 		if gameState == nil {
