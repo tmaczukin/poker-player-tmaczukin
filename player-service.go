@@ -8,7 +8,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/ziegfried/poker-player-go/player"
+	"github.com/ferki/poker-player-go/player"
 )
 
 func main() {
