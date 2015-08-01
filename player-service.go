@@ -5,13 +5,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 
 	"github.com/ziegfried/poker-player-go/player"
 )
 
-const PORT = 4711
-
 func main() {
+	PORT, err := strconv.Atoi(os.Getenv("PORT"))
+	if err != nil {
+		PORT = 4711
+	}
+
 	http.HandleFunc("/", handleRequest)
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil); err != nil {
 		log.Fatal(err)
