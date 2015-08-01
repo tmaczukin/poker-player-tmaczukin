@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"player"
+
+	"github.com/ziegfried/poker-player-go/player"
 )
 
 const PORT = 4711
