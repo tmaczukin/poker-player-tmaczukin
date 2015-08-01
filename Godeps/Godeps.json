@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/ziegfried/poker-player-go",
+	"ImportPath": "github.com/ferki/poker-player-go",
 	"GoVersion": "go1.4.2",
 	"Packages": [
 		"./..."
