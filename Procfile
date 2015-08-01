@@ -1,0 +1,1 @@
+web: poker-player-go
