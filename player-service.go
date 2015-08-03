@@ -8,6 +8,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/andrewslotin/poker-player-go/leanpoker"
 	"github.com/ferki/poker-player-go/player"
 )
 
@@ -36,22 +37,22 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 	case "check":
 		fmt.Fprint(w, "")
 	case "bet_request":
-		gameState, err := parseGameState(request.FormValue("game_state"))
+		game, err := parseGame(request.FormValue("game_state"))
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
 
-		result := player.BetRequest(gameState)
+		result := player.BetRequest(game)
 		fmt.Fprintf(w, "%d", result)
 	case "showdown":
-		gameState, err := parseGameState(request.FormValue("game_state"))
+		game, err := parseGame(request.FormValue("game_state"))
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
 
-		player.Showdown(gameState)
+		player.Showdown(game)
 		fmt.Fprint(w, "")
 	case "version":
 		fmt.Fprint(w, player.Version())
@@ -60,11 +61,11 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 	}
 }
 
-func parseGameState(stateStr string) (gameState *player.GameState, err error) {
-	if err = json.Unmarshal([]byte(stateStr), gameState); err != nil {
+func parseGame(stateStr string) (game *leanpoker.Game, err error) {
+	if err = json.Unmarshal([]byte(stateStr), game); err != nil {
 		log.Printf("Error parsing game state: %s", err)
 		return nil, err
 	}
 
-	return gameState, nil
+	return game, nil
 }
