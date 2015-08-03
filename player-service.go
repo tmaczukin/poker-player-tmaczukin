@@ -8,8 +8,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/andrewslotin/poker-player-go/leanpoker"
-	"github.com/ferki/poker-player-go/player"
+	"github.com/lean-poker/poker-player-go/leanpoker"
+	"github.com/lean-poker/poker-player-go/player"
 )
 
 func main() {
