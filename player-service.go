@@ -12,13 +12,13 @@ import (
 )
 
 func main() {
-	PORT, err := strconv.Atoi(os.Getenv("PORT"))
+	port, err := strconv.Atoi(os.Getenv("PORT"))
 	if err != nil {
-		PORT = 4711
+		port = 4711
 	}
 
 	http.HandleFunc("/", handleRequest)
-	if err := http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil); err != nil {
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -29,6 +29,7 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 		http.Error(w, "Internal Server Error", 500)
 		return
 	}
+
 	action := request.FormValue("action")
 	log.Printf("Request method=%s url=%s action=%s from client=%s\n", request.Method, request.URL, action, request.RemoteAddr)
 	switch action {
@@ -62,9 +63,9 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 }
 
 func parseGameState(stateStr string) *player.GameState {
-	stateBytes := []byte(stateStr)
-	gameState := new(player.GameState)
-	if err := json.Unmarshal(stateBytes, &gameState); err != nil {
+	var gameState *player.GameState
+
+	if err := json.Unmarshal([]byte(stateStr), gameState); err != nil {
 		log.Printf("Error parsing game state: %s", err)
 		return nil
 	}
