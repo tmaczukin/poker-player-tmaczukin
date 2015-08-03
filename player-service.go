@@ -37,8 +37,8 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 		fmt.Fprint(w, "")
 		return
 	case "bet_request":
-		gameState := parseGameState(request.FormValue("game_state"))
-		if gameState == nil {
+		gameState, err := parseGameState(request.FormValue("game_state"))
+		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
@@ -46,8 +46,8 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 		fmt.Fprintf(w, "%d", result)
 		return
 	case "showdown":
-		gameState := parseGameState(request.FormValue("game_state"))
-		if gameState == nil {
+		gameState, err := parseGameState(request.FormValue("game_state"))
+		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
@@ -62,12 +62,11 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 	}
 }
 
-func parseGameState(stateStr string) *player.GameState {
-	var gameState *player.GameState
-
-	if err := json.Unmarshal([]byte(stateStr), gameState); err != nil {
+func parseGameState(stateStr string) (gameState *player.GameState, err error) {
+	if err = json.Unmarshal([]byte(stateStr), gameState); err != nil {
 		log.Printf("Error parsing game state: %s", err)
-		return nil
+		return nil, err
 	}
-	return gameState
+
+	return gameState, nil
 }
