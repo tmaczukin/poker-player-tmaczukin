@@ -35,28 +35,26 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 	switch action {
 	case "check":
 		fmt.Fprint(w, "")
-		return
 	case "bet_request":
 		gameState, err := parseGameState(request.FormValue("game_state"))
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
+
 		result := player.BetRequest(gameState)
 		fmt.Fprintf(w, "%d", result)
-		return
 	case "showdown":
 		gameState, err := parseGameState(request.FormValue("game_state"))
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
+
 		player.Showdown(gameState)
 		fmt.Fprint(w, "")
-		return
 	case "version":
 		fmt.Fprint(w, player.Version())
-		return
 	default:
 		http.Error(w, "Invalid action", 400)
 	}
