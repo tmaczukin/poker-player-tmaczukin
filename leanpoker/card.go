@@ -1,4 +1,4 @@
-package leanpocker
+package leanpoker
 
 type Card struct {
 	// Rank of the card. Possible values are numbers 2-10 and J,Q,K,A
