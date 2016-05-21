@@ -8,8 +8,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/lean-poker/poker-player-go/leanpoker"
-	"github.com/lean-poker/poker-player-go/player"
+	"github.com/tmaczukin/poker-player-tmaczukin/leanpoker"
+	"github.com/tmaczukin/poker-player-tmaczukin/player"
 )
 
 func main() {
@@ -25,8 +25,6 @@ func main() {
 }
 
 func handleRequest(w http.ResponseWriter, request *http.Request) {
-	log.Printf("handleRequest")
-
 	if err := request.ParseForm(); err != nil {
 		log.Printf("Error parsing form data: %s", err)
 		http.Error(w, "Internal Server Error", 500)
@@ -35,31 +33,28 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 
 	action := request.FormValue("action")
 	log.Printf("Request method=%s url=%s action=%s from client=%s\n", request.Method, request.URL, action, request.RemoteAddr)
+
 	switch action {
 	case "check":
 		fmt.Fprint(w, "")
 	case "bet_request":
-		log.Printf("bet_request")
-		return
-		//game, err := parseGame(request.FormValue("game_state"))
-		//if err != nil {
-		//	http.Error(w, "Internal Server Error", 500)
-		//	return
-		//}
+		game, err := parseGame(request.FormValue("game_state"))
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			return
+		}
 
-		//result := player.BetRequest(game)
-		//fmt.Fprintf(w, "%d", result)
+		result := player.BetRequest(game)
+		fmt.Fprintf(w, "%d", result)
 	case "showdown":
-		log.Printf("bet_request")
-		return
-		//game, err := parseGame(request.FormValue("game_state"))
-		//if err != nil {
-		//	http.Error(w, "Internal Server Error", 500)
-		//	return
-		//}
+		game, err := parseGame(request.FormValue("game_state"))
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			return
+		}
 
-		//player.Showdown(game)
-		//fmt.Fprint(w, "")
+		player.Showdown(game)
+		fmt.Fprint(w, "")
 	case "version":
 		fmt.Fprint(w, player.Version())
 	default:

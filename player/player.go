@@ -1,23 +1,18 @@
 package player
 
 import (
-	"github.com/lean-poker/poker-player-go/leanpoker"
-
-	"log"
+	"github.com/tmaczukin/poker-player-tmaczukin/leanpoker"
 )
 
 const VERSION = "20160520203933"
 
 func BetRequest(state *leanpoker.Game) int {
-	log.Printf("BetRequest: %s\n", state)
 	return 0
 }
 
 func Showdown(state *leanpoker.Game) {
-	log.Printf("Showdown: %s\n", state)
 }
 
 func Version() string {
-	log.Printf("VERSION: %s\n", VERSION)
 	return VERSION
 }
