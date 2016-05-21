@@ -25,6 +25,8 @@ func main() {
 }
 
 func handleRequest(w http.ResponseWriter, request *http.Request) {
+	fmt.Println("handleRequest")
+
 	if err := request.ParseForm(); err != nil {
 		log.Printf("Error parsing form data: %s", err)
 		http.Error(w, "Internal Server Error", 500)
