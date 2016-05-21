@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/lean-poker/poker-player-go/leanpoker"
 	"github.com/lean-poker/poker-player-go/player"
