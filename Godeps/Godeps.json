@@ -1,8 +1,15 @@
 {
-	"ImportPath": "github.com/lean-poker/poker-player-go",
+	"ImportPath": "github.com/tmaczukin/poker-player-tmaczukin",
 	"GoVersion": "go1.4.2",
-	"Packages": [
-		"./..."
-	],
-	"Deps": []
+	"GodepVersion": "v70",
+	"Deps": [
+		{
+			"ImportPath": "github.com/lean-poker/poker-player-go/leanpoker",
+			"Rev": "ec0061303599e19577f18f5ba8f367004e04db3d"
+		},
+		{
+			"ImportPath": "github.com/lean-poker/poker-player-go/player",
+			"Rev": "ec0061303599e19577f18f5ba8f367004e04db3d"
+		}
+	]
 }
