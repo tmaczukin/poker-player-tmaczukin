@@ -25,7 +25,7 @@ func main() {
 }
 
 func handleRequest(w http.ResponseWriter, request *http.Request) {
-	fmt.Println("handleRequest")
+	lof.Printf("handleRequest")
 
 	if err := request.ParseForm(); err != nil {
 		log.Printf("Error parsing form data: %s", err)

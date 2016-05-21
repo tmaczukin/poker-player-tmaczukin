@@ -3,21 +3,21 @@ package player
 import (
 	"github.com/lean-poker/poker-player-go/leanpoker"
 
-	"fmt"
+	"log"
 )
 
-const VERSION = "20160520202941"
+const VERSION = "20160520203349"
 
 func BetRequest(state *leanpoker.Game) int {
-	fmt.Printf("BetRequest: %s\n", state)
+	log.Printf("BetRequest: %s\n", state)
 	return 0
 }
 
 func Showdown(state *leanpoker.Game) {
-	fmt.Printf("Showdown: %s\n", state)
+	log.Printf("Showdown: %s\n", state)
 }
 
 func Version() string {
-	fmt.Printf("VERSION: %s\n", VERSION)
+	log.Printf("VERSION: %s\n", VERSION)
 	return VERSION
 }
