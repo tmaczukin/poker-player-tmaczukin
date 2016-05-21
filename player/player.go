@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-const VERSION = "20160520200902"
+const VERSION = "20160520201947"
 
 func BetRequest(state *leanpoker.Game) int {
 	fmt.Printf("BetRequest: %s\n", state)
