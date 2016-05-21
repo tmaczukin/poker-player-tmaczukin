@@ -1,5 +1,6 @@
 VERSION ?= $(shell date +%Y%m%d%H%M%S)
-save:
+
+bump_version:
 	sed 's|VERSION = .*$$|VERSION = "$(VERSION)"|' -i ./player/player.go
 	git add ./player/player.go
-	git commit
+	git commit -m "Update version number to $(VERSION)"
