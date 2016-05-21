@@ -14,7 +14,6 @@ import (
 )
 
 func main() {
-	fmt.Fprint("Game started at %s", time.Now())
 	port, err := strconv.Atoi(os.Getenv("PORT"))
 	if err != nil {
 		port = 4711
@@ -24,7 +23,6 @@ func main() {
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Fprint("Game finished at %s", time.Now())
 }
 
 func handleRequest(w http.ResponseWriter, request *http.Request) {
