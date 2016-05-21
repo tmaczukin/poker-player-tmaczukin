@@ -1,6 +1,6 @@
 package leanpoker
 
-const VERSION = "20160520195641"
+const VERSION = "Default Go folding player"
 
 type Player struct {
 	// Id of the player (same as the index)
