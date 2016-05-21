@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-const VERSION = "20160520203502"
+const VERSION = "20160520203933"
 
 func BetRequest(state *leanpoker.Game) int {
 	log.Printf("BetRequest: %s\n", state)

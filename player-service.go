@@ -39,23 +39,27 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 	case "check":
 		fmt.Fprint(w, "")
 	case "bet_request":
-		game, err := parseGame(request.FormValue("game_state"))
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			return
-		}
+		log.Printf("bet_request")
+		return
+		//game, err := parseGame(request.FormValue("game_state"))
+		//if err != nil {
+		//	http.Error(w, "Internal Server Error", 500)
+		//	return
+		//}
 
-		result := player.BetRequest(game)
-		fmt.Fprintf(w, "%d", result)
+		//result := player.BetRequest(game)
+		//fmt.Fprintf(w, "%d", result)
 	case "showdown":
-		game, err := parseGame(request.FormValue("game_state"))
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			return
-		}
+		log.Printf("bet_request")
+		return
+		//game, err := parseGame(request.FormValue("game_state"))
+		//if err != nil {
+		//	http.Error(w, "Internal Server Error", 500)
+		//	return
+		//}
 
-		player.Showdown(game)
-		fmt.Fprint(w, "")
+		//player.Showdown(game)
+		//fmt.Fprint(w, "")
 	case "version":
 		fmt.Fprint(w, player.Version())
 	default:
