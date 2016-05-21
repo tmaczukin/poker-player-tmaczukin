@@ -37,6 +37,10 @@ func assertIntEqual(t *testing.T, input, pattern int) {
 	t.Fail()
 }
 
+func getGameState() string {
+	return `{"small_blind": 0, "current_buy_in": 0}`
+}
+
 func TestUnknownAction(t *testing.T) {
 	r := callRequest("unknown", "")
 	assertIntEqual(t, r.Code, 400)
@@ -58,8 +62,7 @@ func TestInvalidBetRequestAction(t *testing.T) {
 }
 
 func TestBetReuqestAction(t *testing.T) {
-	game_state := `{"test":"a"}`
-	r := callRequest("bet_request", game_state)
+	r := callRequest("bet_request", getGameState())
 	assertIntEqual(t, r.Code, 200)
 }
 
@@ -69,7 +72,6 @@ func TestInvalidShowndownAction(t *testing.T) {
 }
 
 func TestShowndownAction(t *testing.T) {
-	game_state := `{"test": "a"}`
-	r := callRequest("showdown", game_state)
+	r := callRequest("showdown", getGameState())
 	assertIntEqual(t, r.Code, 200)
 }
