@@ -7,12 +7,14 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/lean-poker/poker-player-go/leanpoker"
 	"github.com/lean-poker/poker-player-go/player"
 )
 
 func main() {
+	fmt.Fprint("Game started at %s", time.Now())
 	port, err := strconv.Atoi(os.Getenv("PORT"))
 	if err != nil {
 		port = 4711
@@ -22,6 +24,7 @@ func main() {
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
 	}
+	fmt.Fprint("Game finished at %s", time.Now())
 }
 
 func handleRequest(w http.ResponseWriter, request *http.Request) {
@@ -64,6 +67,7 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 }
 
 func parseGame(stateStr string) (game *leanpoker.Game, err error) {
+	game = &leanpoker.Game{}
 	if err = json.Unmarshal([]byte(stateStr), game); err != nil {
 		log.Printf("Error parsing game state: %s", err)
 		return nil, err
